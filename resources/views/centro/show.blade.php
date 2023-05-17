@@ -11,11 +11,9 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="float-left">
-                            
+                            <span class="card-title">{{ __('Ver') }} Centro</span>
                         </div>
-                        <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('centros.index') }}"> {{ __('Volver') }}</a>
-                        </div>
+                        
                     </div>
 
                     <div class="card-body">
@@ -32,7 +30,9 @@
                             <strong>Telefono:</strong>
                             {{ $centro->telefono }}
                         </div>
-
+                        <div class="float-right mt-3">
+                            <a class="btn btn-primary" href="{{ route('centros.index') }}"> {{ __('Volver') }}</a>
+                        </div>
                     </div>
                 </div>
             </div>

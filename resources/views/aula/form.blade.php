@@ -7,7 +7,7 @@
             {!! $errors->first('nombre', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group mt-2" style="width: 20rem">
-            {{ Form::label('capacidad del aula') }}
+            {{ Form::label('capacidad') }}
             {{ Form::number('capacidad', $aula->capacidad, ['class' => 'form-control' . ($errors->has('capacidad') ? ' is-invalid' : ''), 'style' => 'width:5rem']) }}
             {!! $errors->first('capacidad', '<div class="invalid-feedback">:message</div>') !!}
         </div>

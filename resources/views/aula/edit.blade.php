@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('template_title')
-    {{ __('Update') }} Aula
+    {{ __('Editar') }} Aula
 @endsection
 
 @section('content')
-    <section class="content container-fluid">
+    <section class="content container-fluid  custom-box-body">
         <div class="">
             <div class="col-md-12">
 
@@ -13,7 +13,7 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">{{ __('Update') }} Aula</span>
+                        <span class="card-title">{{ __('Editar') }} Aula</span>
                     </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('aulas.update', $aula->id) }}"  role="form" enctype="multipart/form-data">

@@ -7,7 +7,7 @@
 @section('content')
     <section class="content container-fluid">
         <div class="">
-            <div class="col-md-12">
+            <div class="col-md-12 custom-box-body mt-4">
 
                 @includeif('partials.errors')
 
