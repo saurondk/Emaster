@@ -23,8 +23,8 @@
             {!! $errors->first('fecha_expiracion', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
-            {{ Form::label('programa_id') }}
-            {{ Form::select('programa_id',$programa, $licencia->programa_id, ['class' => 'form-control' . ($errors->has('programa_id') ? ' is-invalid' : ''), 'placeholder' => 'Programa Id']) }}
+            {{ Form::label('programa') }}
+            {{ Form::select('programa_id',$programa, $licencia->programa_id, ['class' => 'form-control' . ($errors->has('programa_id') ? ' is-invalid' : ''), 'placeholder' => 'Programa']) }}
             {!! $errors->first('programa_id', '<div class="invalid-feedback">:message</div>') !!}
         </div>
 
@@ -34,14 +34,14 @@
         </div>
         
         <div class="form-group">
-            {{ Form::label('ordenador_id') }}
-            {{ Form::select('ordenador_id',$ordenadore, $licencia->ordenador_id, ['class' => 'form-control' . ($errors->has('ordenador_id') ? ' is-invalid' : ''), 'placeholder' => 'Ordenador Id']) }}
+            {{ Form::label('ordenador') }}
+            {{ Form::select('ordenador_id',$ordenadore, $licencia->ordenador_id, ['class' => 'form-control' . ($errors->has('ordenador_id') ? ' is-invalid' : ''), 'placeholder' => 'Ordenador']) }}
             {!! $errors->first('ordenador_id', '<div class="invalid-feedback">:message</div>') !!}
         </div>
 
     </div>
-    <div class="box-footer mt20">
-        <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
+    <div class="box-footer mt-3">
+        <button type="submit" class="btn btn-primary">{{ __('Enviar') }}</button>
     </div>
 </div>
 
