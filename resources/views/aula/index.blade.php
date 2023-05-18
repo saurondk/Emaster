@@ -58,7 +58,7 @@
                                         
                                         
 
-                                        <th id="sort-usuario"><button class="btn custom-blue-hover">Nombre</button></th>
+                                        <th id="sort-usuario"><button class="btn   custom-blue-hover">Nombre</button></th>
 										<th id="sort-clave"><button class="btn custom-blue-hover">Capacidad</button></th>
 										<th id="sort-fecha_compra"><button class="btn custom-blue-hover">Nombre del centro</button></th>
                                       
@@ -80,7 +80,7 @@
                                                     <a class="btn btn-sm btn-success" href="{{ route('aulas.edit',$aula->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> {{ __('Borrar') }}</button>
+                                                    <a type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> {{ __('Borrar') }}</a>
                                                 </form>
                                             </td>
                                         </tr>
@@ -102,22 +102,29 @@
             let sortOrder = 'asc';
         
             function sortTable(columnIndex, sortOrder, tableBody) {
-                const rows = tableBody.querySelectorAll("tr");
-                const sortedRows = Array.from(rows).sort((a, b) => {
-                    const aText = a.children[columnIndex].innerText;
-                    const bText = b.children[columnIndex].innerText;
-        
-                    if (aText < bText) {
-                        return sortOrder === 'asc' ? -1 : 1;
-                    }
-                    if (aText > bText) {
-                        return sortOrder === 'asc' ? 1 : -1;
-                    }
-                    return 0;
-                });
-        
-                sortedRows.forEach(row => tableBody.appendChild(row));
-            }
+    const rows = tableBody.querySelectorAll("tr");
+    const sortedRows = Array.from(rows).sort((a, b) => {
+        let aText = a.children[columnIndex].innerText;
+        let bText = b.children[columnIndex].innerText;
+
+        // Si los valores son numéricos, convertir a números
+        if (!isNaN(aText) && !isNaN(bText)) {
+            aText = parseFloat(aText);
+            bText = parseFloat(bText);
+        }
+
+        if (aText < bText) {
+            return sortOrder === 'asc' ? -1 : 1;
+        }
+        if (aText > bText) {
+            return sortOrder === 'asc' ? 1 : -1;
+        }
+        return 0;
+    });
+
+    sortedRows.forEach(row => tableBody.appendChild(row));
+}
+
             $(document).ready(function() {
             // Realiza una búsqueda vacía al cargar la página
             search('');
@@ -163,77 +170,84 @@
         });
     </script>
 
-
-    {{-- <script>
-        //script para el buscador
-          function search(value) {
-            if (value) {
-                $('.alldata').hide();
-                $('.searchdata').show();
-            } else {
-                $('.alldata').show();
-                $('.searchdata').hide();
-            }
-            $.ajax({
-                type: 'get',
-                url: '{{URL::to('search')}}',
-                data: { 'search': value },
-                success: function(data) {
-                    console.log(data);
-                    $('#Content').html(data);
-                }
-            });
-            $('#search').on('keyup', function() {
-            const inputValue = $(this).val();
-            search(inputValue);
-        });
-        }
-    </script>
-    
     <script>
-        // script para que se ordenen las tablas.
         $(document).ready(function() {
-            let sortOrder = 'asc';
+    // Retraso inicial en milisegundos
+    var delay = 1000;
+
+    $('button.btn').each(function(i, btn) {
+        // Prepara el tooltip para cada th
+        var thElement = $(btn).closest('th');
+        thElement.attr('title', 'Puedes hacer click para ordenar por este campo');
+        thElement.attr('data-toggle', 'tooltip');
+        thElement.attr('data-placement', 'bottom');
         
-            function sortTable(columnIndex, sortOrder, tableBody) {
-                const rows = tableBody.querySelectorAll("tr");
-                const sortedRows = Array.from(rows).sort((a, b) => {
-                    const aText = a.children[columnIndex].innerText;
-                    const bText = b.children[columnIndex].innerText;
-        
-                    if (aText < bText) {
-                        return sortOrder === 'asc' ? -1 : 1;
-                    }
-                    if (aText > bText) {
-                        return sortOrder === 'asc' ? 1 : -1;
-                    }
-                    return 0;
-                });
-        
-                sortedRows.forEach(row => tableBody.appendChild(row));
-            }
-        
-            $('table').on('click', 'th button', function() {
-                const columnIndex = $(this).closest('th').index();
-                sortOrder = (sortOrder === 'asc') ? 'desc' : 'asc';
-        
-                if ($('.searchdata').is(":visible")) {
-                    sortTable(columnIndex, sortOrder, document.querySelector('tbody.searchdata'));
-                } else {
-                    sortTable(columnIndex, sortOrder, document.querySelector('tbody.alldata'));
-                }
-            });
-        
-          
-            $(document).ready(function() {
-                // Realiza una búsqueda vacía al cargar la página
-                search('');
-            });
-        
-           
+        // Agrega la clase y muestra el tooltip después del retraso
+        setTimeout(function(){
+            $(btn).addClass("manual-hover");
+            thElement.tooltip('show');
+        }, delay);
+
+        // Aumenta el retraso para el próximo botón
+        delay += 1500;
+
+        // Remueve la clase y oculta el tooltip después de 0.5 segundos
+        setTimeout(function(){
+            $(btn).removeClass("manual-hover");
+            thElement.tooltip('dispose');
+        }, delay);
+
+        // Aumenta el retraso para el próximo botón
+        delay += 1500;
+    });
+});
+
+
+    </script>
+  {{-- ////////////////////////////////////////// Script implementado para iniciar solo una unica vez /////////////////////////////////// --}}
+{{-- 
+  
+  <script>
+    $(document).ready(function() {
+// Comprueba si el script ya se ha ejecutado
+if (!localStorage.getItem('scriptEjecutado')) {
+    // Retraso inicial en milisegundos
+    var delay = 1000;
     
-        });
-    </script> --}}
+    $('button.btn').each(function(i, btn) {
+        // Agrega la clase después del retraso
+        setTimeout(function(){
+            $(btn).addClass("manual-hover");
+        }, delay);
+
+        // Aumenta el retraso para el próximo botón
+        delay += 500;
+
+        // Remueve la clase después de 0.5 segundos
+        setTimeout(function(){
+            $(btn).removeClass("manual-hover");
+        }, delay);
+
+        // Aumenta el retraso para el próximo botón
+        delay += 500;
+    });
+
+    $('#card_title').append(' --------------->>>>Puedes hacer click en las cabeceras de las tablas para ordenarlas por orden alfabetico');
+
+    // Eliminar el mensaje después de 7 segundos
+    setTimeout(function() {
+        $('#card_title').html('{{ __('Aulas') }}');
+    }, 7000);
+
+    // Marca el script como ejecutado
+    localStorage.setItem('scriptEjecutado', 'true');
+}
+}); 
+
+
+
+
+ </script> --}}
     
        
 @endsection

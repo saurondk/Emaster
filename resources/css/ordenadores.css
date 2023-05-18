@@ -87,9 +87,12 @@
 .button:hover,
 .button:focus{
 	outline-offset: 3px;
+  background-color: #5195fa;
 }
 .button:is(:hover, :focus){
 	outline-offset: 4px;
+  background-color: #5195fa;
+  
 }
 
 .title span {
@@ -171,6 +174,32 @@
   background-color: #007BFF;
   color:white;
 }
+.manual-hover {
+  background-color: #007BFF;
+  color: white;
+}
+
+.tooltip-inner {
+  background-color: #007BFF !important; /* Color de fondo azul */
+  color: white !important; /* Color de texto blanco */
+}
+
+.tooltip.bs-tooltip-auto[x-placement^=top] .arrow::before, .tooltip.bs-tooltip-top .arrow::before {
+  border-top-color: #007BFF !important; /* Color de flecha azul para tooltips encima del elemento */
+}
+
+.tooltip.bs-tooltip-auto[x-placement^=bottom] .arrow::before, .tooltip.bs-tooltip-bottom .arrow::before {
+  border-bottom-color: #007BFF !important; /* Color de flecha azul para tooltips debajo del elemento */
+}
+
+.tooltip.bs-tooltip-auto[x-placement^=left] .arrow::before, .tooltip.bs-tooltip-left .arrow::before {
+  border-left-color: #007BFF !important; /* Color de flecha azul para tooltips a la izquierda del elemento */
+}
+
+.tooltip.bs-tooltip-auto[x-placement^=right] .arrow::before, .tooltip.bs-tooltip-right .arrow::before {
+  border-right-color: #007BFF !important; /* Color de flecha azul para tooltips a la derecha del elemento */
+}
+
 .custom-box-body {
   
   

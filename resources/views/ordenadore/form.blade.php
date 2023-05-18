@@ -32,7 +32,7 @@
                 {{ Form::text('fecha_compra', $ordenadore->fecha_compra, ['type' =>'text','id' => 'fecha_compra', 'class' => 'form-control' . ($errors->has('fecha_compra') ? ' es-invalido' : ''), 'placeholder' => 'Fecha Compra']) }}
                 <span class="input-group-append">
                     <span class="input-group-text bg-light d-block">
-                        <i class="far fa-calendar fa-lg"></i>
+                        <i class="far fa-calendar fa-lg "></i>
                     </span>
                   </span>
             </div>
