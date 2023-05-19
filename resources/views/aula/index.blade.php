@@ -80,7 +80,7 @@
                                                     <a class="btn btn-sm btn-success" href="{{ route('aulas.edit',$aula->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
                                                     @csrf
                                                     @method('DELETE')
-                                                    <a type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> {{ __('Borrar') }}</a>
+                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> {{ __('Borrar') }}</button>
                                                 </form>
                                             </td>
                                         </tr>
@@ -170,40 +170,33 @@
         });
     </script>
 
-    <script>
-        $(document).ready(function() {
-    // Retraso inicial en milisegundos
-    var delay = 1000;
-
-    $('button.btn').each(function(i, btn) {
-        // Prepara el tooltip para cada th
-        var thElement = $(btn).closest('th');
-        thElement.attr('title', 'Puedes hacer click para ordenar por este campo');
-        thElement.attr('data-toggle', 'tooltip');
-        thElement.attr('data-placement', 'bottom');
-        
-        // Agrega la clase y muestra el tooltip después del retraso
-        setTimeout(function(){
-            $(btn).addClass("manual-hover");
-            thElement.tooltip('show');
-        }, delay);
-
-        // Aumenta el retraso para el próximo botón
-        delay += 1500;
-
-        // Remueve la clase y oculta el tooltip después de 0.5 segundos
-        setTimeout(function(){
-            $(btn).removeClass("manual-hover");
-            thElement.tooltip('dispose');
-        }, delay);
-
-        // Aumenta el retraso para el próximo botón
-        delay += 1500;
+<script>
+    $(document).ready(function() {
+        var delay = 1000;
+    
+        $('#sort-usuario button.btn, #sort-clave button.btn, #sort-fecha_compra button.btn').each(function(i, btn) {
+            var thElement = $(btn).closest('th');
+            thElement.attr('title', 'Puedes hacer click para ordenar por este campo');
+            thElement.attr('data-toggle', 'tooltip');
+            thElement.attr('data-placement', 'bottom');
+            
+            setTimeout(function(){
+                $(btn).addClass("manual-hover");
+                thElement.tooltip('show');
+            }, delay);
+    
+            delay += 1500;
+    
+            setTimeout(function(){
+                $(btn).removeClass("manual-hover");
+                thElement.tooltip('dispose');
+            }, delay);
+    
+            delay += 1500;
+        });
     });
-});
-
-
     </script>
+    
   {{-- ////////////////////////////////////////// Script implementado para iniciar solo una unica vez /////////////////////////////////// --}}
 {{-- 
   
