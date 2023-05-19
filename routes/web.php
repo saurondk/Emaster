@@ -48,19 +48,16 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('programas', ProgramaController::class);
     Route::resource('componentes',ComponenteController::class);
     Route::resource('usuarios', UsuarioController::class);
+    Route::resource('licencias', LicenciaController::class);
+
     Route::get('/searcho', [App\Http\Controllers\OrdenadoreController::class, 'searcho']);
     Route::get('/searchl', [App\Http\Controllers\LicenciaController::class, 'searchl']);
     Route::get('/api/ordenadores/{aula_id}', [OrdenadoreController::class, 'getOrdenadoresPorAula']);
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-    Route::get('/licencias', [App\Http\Controllers\LicenciaController::class, 'index'])->name('licencias.index');
-    Route::get('/licencias/create', [App\Http\Controllers\LicenciaController::class, 'create'])->name('licencias.create');
-    Route::post('/licencias', [App\Http\Controllers\LicenciaController::class, 'store'])->name('licencias.store');
+ 
     Route::get('/licencias/export', [App\Http\Controllers\LicenciaController::class, 'exportExcel'])->name('licencias.export');
-    Route::get('/licencias/{id}', [App\Http\Controllers\LicenciaController::class, 'show'])->name('licencias.show');
-    Route::get('/licencias/{id}/edit', [App\Http\Controllers\LicenciaController::class, 'edit'])->name('licencias.edit');
-    Route::put('/licencias/{id}', [App\Http\Controllers\LicenciaController::class, 'update'])->name('licencias.update');
-    Route::delete('/licencias/{id}', [App\Http\Controllers\LicenciaController::class, 'destroy'])->name('licencias.destroy');
+   
 
 
 });
