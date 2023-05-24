@@ -51,7 +51,7 @@ class AulaController extends Controller
         $aula = Aula::create($request->all());
 
         return redirect()->route('aulas.index')
-            ->with('success', 'Aula creada correctamente.');
+            ->with('Correcto', 'Aula creada correctamente.');
     }
 
     /**
@@ -95,7 +95,7 @@ class AulaController extends Controller
         $aula->update($request->all());
 
         return redirect()->route('aulas.index')
-            ->with('success', 'Aula actualizado correctamente');
+            ->with('Correcto', 'Aula actualizado correctamente');
     }
 
     /**

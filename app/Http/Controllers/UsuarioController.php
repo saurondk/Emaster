@@ -43,7 +43,7 @@ class UsuarioController extends Controller
 
     public function show(Usuario $usuario)
     {
-        return view('usuarios.show', compact('usuario'));
+        return view('usuario.show', compact('usuario'));
     }
     
     public function edit(Usuario $usuario)

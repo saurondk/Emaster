@@ -48,16 +48,15 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('programas', ProgramaController::class);
     Route::resource('componentes',ComponenteController::class);
     Route::resource('usuarios', UsuarioController::class);
+    Route::get('/licencias/export', [App\Http\Controllers\LicenciaController::class, 'exportExcel'])->name('licencias.export');
     Route::resource('licencias', LicenciaController::class);
-
     Route::get('/searcho', [App\Http\Controllers\OrdenadoreController::class, 'searcho']);
     Route::get('/searchl', [App\Http\Controllers\LicenciaController::class, 'searchl']);
     Route::get('/api/ordenadores/{aula_id}', [OrdenadoreController::class, 'getOrdenadoresPorAula']);
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
  
-    Route::get('/licencias/export', [App\Http\Controllers\LicenciaController::class, 'exportExcel'])->name('licencias.export');
-   
+  
 
 
 });

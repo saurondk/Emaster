@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Aula;
 use App\Models\Componente;
 use Illuminate\Http\Request;
 
@@ -32,7 +33,8 @@ class ComponenteController extends Controller
     public function create()
     {
         $componente = new Componente();
-        return view('componente.create', compact('componente'));
+        $aulas = Aula::pluck('nombre', 'id');
+        return view('componente.create', compact('componente', 'aulas'));
     }
 
     /**
@@ -73,8 +75,9 @@ class ComponenteController extends Controller
     public function edit($id)
     {
         $componente = Componente::find($id);
+        $aulas = Aula::pluck('nombre', 'id');
 
-        return view('componente.edit', compact('componente'));
+        return view('componente.edit', compact('componente','aulas'));
     }
 
     /**

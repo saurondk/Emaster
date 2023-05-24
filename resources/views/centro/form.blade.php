@@ -13,9 +13,14 @@
         </div>
         <div class="form-group" style="width: 20rem">
             {{ Form::label('telefono') }}
-            {{ Form::text('telefono', $centro->telefono, ['class' => 'form-control' . ($errors->has('telefono') ? ' is-invalid' : ''), 'placeholder' => 'Telefono']) }}
+            {{ Form::text('telefono', $centro->telefono, ['class' => 'form-control' . ($errors->has('telefono') ? ' is-invalid' : ''), 'placeholder' => 'Telefono', 'maxlength' => 9]) }}
             {!! $errors->first('telefono', '<div class="invalid-feedback">:message</div>') !!}
         </div>
+        {{-- <div class="form-group" style="width: 20rem">
+            {{ Form::label('telefono') }}
+            {{ Form::text('telefono', $centro->telefono, ['class' => 'form-control' . ($errors->has('telefono') ? ' is-invalid' : ''), 'placeholder' => 'Telefono']) }}
+            {!! $errors->first('telefono', '<div class="invalid-feedback">:message</div>') !!}
+        </div> --}}
 
     </div>
     <div class="box-footer mt-3">

@@ -172,6 +172,8 @@
 
 <script>
     $(document).ready(function() {
+        if (!localStorage.getItem('scriptEjecutado')) {
+        
         var delay = 1000;
     
         $('#sort-usuario button.btn, #sort-clave button.btn, #sort-fecha_compra button.btn').each(function(i, btn) {
@@ -194,6 +196,8 @@
     
             delay += 1500;
         });
+        localStorage.setItem('scriptEjecutado', 'true');
+}
     });
     </script>
     

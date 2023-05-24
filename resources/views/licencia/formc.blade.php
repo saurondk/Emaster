@@ -1,6 +1,5 @@
 
-
-{!! Form::open(['route' => ['licencias.update', $licencia->id], 'method' => 'PUT']) !!}
+{!! Form::open(['route' => ['licencias.store'], 'method' => 'POST']) !!}
 <div class="box box-info padding-1 custom-box-body">
     <div class="box-body">
         <div class="form-group"  style="width: 20rem">
@@ -8,7 +7,7 @@
             {{ Form::text('Usuario', $licencia->Usuario, ['class' => 'form-control' . ($errors->has('Usuario') ? ' is-invalid' : ''), 'placeholder' => 'Usuario']) }}
             {!! $errors->first('Usuario', '<div class="invalid-feedback">:message</div>') !!}
         </div>
-        <div class="form-group" style="width: 20rem">
+        <div class="form-group"  style="width: 20rem">
             {{ Form::label('clave') }}
             {{ Form::text('clave', $licencia->clave, ['class' => 'form-control' . ($errors->has('clave') ? ' is-invalid' : ''), 'placeholder' => 'Clave']) }}
             {!! $errors->first('clave', '<div class="invalid-feedback">:message</div>') !!}
@@ -38,18 +37,18 @@
             </div>
             {!! $errors->first('fecha_expiracion', '<div class="invalid-feedback">:message</div>') !!}
         </div>
-        <div class="form-group" style="width: 20rem">
+        <div class="form-group"  style="width: 20rem">
             {{ Form::label('programa_id') }}
             {{ Form::select('programa_id',$programa, $licencia->programa_id, ['class' => 'form-control' . ($errors->has('programa_id') ? ' is-invalid' : ''), 'placeholder' => 'Programa Id']) }}
             {!! $errors->first('programa_id', '<div class="invalid-feedback">:message</div>') !!}
         </div>
 
-        <div class="form-group" style="width: 20rem">
+        <div class="form-group"  style="width: 20rem">
             {{ Form::label('aula_id', 'Aula') }}
             {{ Form::select('aula_id', $aulas, null, ['class' => 'form-control', 'id' => 'aula_id', 'placeholder' => 'Seleccionar Aula']) }}
         </div>
         
-        <div class="form-group" style="width: 20rem">
+        <div class="form-group"  style="width: 20rem">
             {{ Form::label('ordenador_id') }}
             {{ Form::select('ordenador_id',$ordenadore, $licencia->ordenador_id, ['class' => 'form-control' . ($errors->has('ordenador_id') ? ' is-invalid' : ''), 'placeholder' => 'Ordenador Id']) }}
             {!! $errors->first('ordenador_id', '<div class="invalid-feedback">:message</div>') !!}

@@ -24,13 +24,15 @@ class Aula extends Model
 {
     
     static $rules = [
-		'nombre' => 'required',
-		'capacidad' => 'required|regex:/^[0-9]+$/',
-		'centro_id' => 'required',
+        'nombre' => 'required',
+        'capacidad' => 'required|regex:/^[0-9]+$/|max:9999',
+        'centro_id' => 'required',
     ];
+
     static $messages = [
         'capacidad.regex' => 'Solo puedes insertar números en el campo de capacidad',
         'capacidad.required' => 'El campo de capacidad es obligatorio',
+        'capacidad.max' => 'La capacidad no puede ser mayor a 9999',
         'centro_id.required' => 'El campo de Centro es obligatorio',
         'nombre.required' => 'El campo Nombre del centro es obligatorio',
     ];
@@ -68,6 +70,4 @@ class Aula extends Model
     {
         return $this->hasMany('App\Models\Ordenadore', 'aula_id', 'id');
     }
-    
-
 }
