@@ -16,6 +16,9 @@ return new class extends Migration
             $table->string('nombre_curso');
             $table->string('usuario')->unique();
             $table->string('contraseña');
+            $table->string('codigo_curso');
+            $table->date('fecha_inicio');
+            $table->date('fecha_fin');
             $table->foreignId('aula_id')->constrained('aulas');
             $table->timestamps();
         });
