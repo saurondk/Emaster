@@ -52,6 +52,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('licencias', LicenciaController::class);
     Route::get('/searcho', [App\Http\Controllers\OrdenadoreController::class, 'searcho']);
     Route::get('/searchl', [App\Http\Controllers\LicenciaController::class, 'searchl']);
+    Route::get('/searchu', [App\Http\Controllers\UsuarioController::class, 'searchu']);
     Route::get('/api/ordenadores/{aula_id}', [OrdenadoreController::class, 'getOrdenadoresPorAula']);
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

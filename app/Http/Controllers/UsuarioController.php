@@ -69,4 +69,46 @@ class UsuarioController extends Controller
             ->with('success', 'Usuario eliminado correctamente.');
     }
     
+
+
+
+    public function searchu(Request $request){
+   
+        $output="";
+       
+        $usuarios = Usuario::where('nombre_curso', 'like', '%' . $request->searchu . '%')
+                ->orWhere('usuario', 'like', '%' . $request->searchu . '%')
+                ->orWhereHas('aula', function ($query) use ($request) {
+                    $query->where('nombre', 'like', '%' . $request->searchu . '%');
+                })
+                ->with('aula')
+                ->get();
+    
+         foreach($usuarios as $usuario){
+             $output.=
+             '
+             
+             <tr>
+             <td> '.$usuario->nombre_curso .'</td>
+             <td> '.$usuario->usuario.'</td>
+             <td> '.$usuario->contraseña .'</td>
+             <td> '.$usuario->codigo_curso .'</td>
+             <td> '.$usuario->fecha_inicio .'</td>
+             <td> '.$usuario->fecha_fin .'</td>
+             <td> '.$usuario->aula->nombre .'</td>
+             <td>
+             <form action="' . route('usuarios.destroy', $usuario->id) . '" method="POST">
+                 <a class="btn btn-sm btn-primary" href="' . route('usuarios.show', $usuario->id) . '"><i class="fa fa-fw fa-eye"></i> ' . __('Ver') . '</a>
+                 <a class="btn btn-sm btn-success" href="' . route('usuarios.edit', $usuario->id) . '"><i class="fa fa-fw fa-edit"></i> ' . __('Editar') . '</a>
+                 ' . csrf_field() . '
+                 ' . method_field('DELETE') . '
+                 <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> ' . __('Borrar') . '</button>
+             </form>
+         </td>
+             </tr>';
+             
+         }
+         return response ($output);
+     }
+    
 }
